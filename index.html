@@ -1,0 +1,48 @@
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="libs/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			/*var names = [
+					{"0" : "cero","1" : "uno","2" : "dos","3" : "tres","4" : "cuatro","5" : "cinco", "6" : "seis","7" : "siete", "8" : "ocho", "9" : "nueve","10" : "diez"},
+					{"11" : "once","12" : "doce", "13" : "trece","14" : "catorce", "15" : "quince"},
+					["dieci", "veinti", "treinta", "cuarenta", "cincuenta", "sesenta", "setenta", "noventa"], 
+					["cien", "ciento", "cientos", "mil"]
+				];*/
+
+			var names = [
+					{"0" : "zero","1" : "one","2" : "two","3" : "three","4" : "four","5" : "five", "6" : "six","7" : "seven", "8" : "eight", "9" : "nine","10" : "ten"},
+					{"11" : "eleven","12" : "twelve", "13" : "thirteen","14" : "fourteen", "15" : "fifteen", "16" : "sixteen", "17" : "seventeen", "18" : "eighteen", "19" : "nineteen"},
+					["twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"], 
+					["hundred", "thousand", "million"]
+				];	
+
+			$("#txtNumber").keyup(function(event){
+				num = jQuery.trim(event.srcElement.value);
+				if(num !== ""){
+					var nums = num.split("");
+					
+
+					if (nums.length>1){
+						console.log(parseInt(num[0]));
+					} else {
+						$("#resultNumber").text(names[0][num[0]]);
+					}
+
+					
+				}
+				
+			});
+		});
+
+	</script>
+</head>
+<body>
+
+	<input type="text" id="txtNumber"/>
+	<p id="resultNumber"></p>
+
+
+</body>
+</html>

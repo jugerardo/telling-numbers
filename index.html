@@ -12,11 +12,47 @@
 				];*/
 
 			var names = [
-					{"0" : "zero","1" : "one","2" : "two","3" : "three","4" : "four","5" : "five", "6" : "six","7" : "seven", "8" : "eight", "9" : "nine","10" : "ten"},
+					["zero","one","two","three","four","five","six","seven","eight","nine","ten"],
 					{"11" : "eleven","12" : "twelve", "13" : "thirteen","14" : "fourteen", "15" : "fifteen", "16" : "sixteen", "17" : "seventeen", "18" : "eighteen", "19" : "nineteen"},
 					["twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"], 
 					["hundred", "thousand", "million"]
-				];	
+				];
+
+			function solve3 (a, c){
+				if(a.length > 2){
+					return names[0][a[0]] + names[0][a[1]] + names[0][a[2]];
+				}else{
+					return "-";
+				}
+			}
+
+			function extractNumbers(a, count){
+				var ex, ret = "", c = count + 1, n = a;
+
+				if (a.length > 3){
+					console.log("AAAARRAY LENGTH:");
+					console.log(n.length);
+					ex = n.splice(n.length-3, 3)
+					console.log("ARRAY:");
+					console.log(ex);
+					console.log("ARRAY LEFT:");
+					console.log(n);
+					console.log("ARRAY LENGTH:");
+					console.log(n.length);
+					ret = extractNumbers(a, c) + solve3(ex, c);
+				}else{
+					ret += solve3(a, c);
+				}
+
+				return ret;
+			}
+
+			function getLetters(num){
+				var aNum = num.split(""),
+				i = aNum.length;
+
+				return extractNumbers(aNum, 0);
+			}		
 
 			$("#txtNumber").keyup(function(event){
 				num = jQuery.trim(event.srcElement.value);
@@ -26,6 +62,7 @@
 
 					if (nums.length>1){
 						console.log(parseInt(num[0]));
+						console.log(extractNumbers(nums, 0));
 					} else {
 						$("#resultNumber").text(names[0][num[0]]);
 					}
@@ -40,7 +77,7 @@
 </head>
 <body>
 
-	<input type="text" id="txtNumber"/>
+	<input type="text" id="txtNumber" value="123456789"/>
 	<p id="resultNumber"></p>
 
 

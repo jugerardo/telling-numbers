@@ -13,36 +13,62 @@
 
 			var names = [
 					["zero","one","two","three","four","five","six","seven","eight","nine","ten"],
-					{"11" : "eleven","12" : "twelve", "13" : "thirteen","14" : "fourteen", "15" : "fifteen", "16" : "sixteen", "17" : "seventeen", "18" : "eighteen", "19" : "nineteen"},
-					["twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"], 
-					["hundred", "thousand", "million"]
+					//{'10': "ten", "11" : "eleven","12" : "twelve", "13" : "thirteen","14" : "fourteen", "15" : "fifteen", "16" : "sixteen", "17" : "seventeen", "18" : "eighteen", "19" : "nineteen"},
+					["ten", "eleven","twelve", "thirteen","fourteen","fifteen","sixteen","seventeen", "eighteen", "nineteen"],
+					{"2":"twenty", "3" : "thirty", "4": "forty", "5": "fifty", "6": "sixty", "7": "seventy", "8":"eighty", "9": "ninety"}, 
+					["","hundred", "thousand", "million","billion","trillion","quadrillion"]
 				];
 
-			function solve3 (a, c){
-				if(a.length > 2){
-					return names[0][a[0]] + names[0][a[1]] + names[0][a[2]];
+			function solve2 (n1, n2, c){
+				var r2 = '', r3 = '';
+				if(n1==="1"){
+					r2 = names[1][parseInt(n2)];
+					r3 = '';
 				}else{
-					return "-";
+					
+					r2 = names[2][n1];
+					r3 = names[0][parseInt(n2)];
+				}
+
+				return r2 + " " + r3 + " " + names[3][c>0 ? c+1 : c];
+			}
+
+			function solve3 (a, c){
+				var r1 = '', r2 = '', r3 = '';
+				//console.log('c= ' + c);
+				console.log("asdasdasd" + a);
+				if(a.length > 2){
+
+					return " " + names[0][a[0]] + " " + names[3][1] + " " +  solve2(a[1],a[2], c)+ " ";
+
 				}
 			}
 
 			function extractNumbers(a, count){
 				var ex, ret = "", c = count + 1, n = a;
 
-				if (a.length > 3){
-					console.log("AAAARRAY LENGTH:");
-					console.log(n.length);
-					ex = n.splice(n.length-3, 3)
-					console.log("ARRAY:");
-					console.log(ex);
-					console.log("ARRAY LEFT:");
-					console.log(n);
-					console.log("ARRAY LENGTH:");
-					console.log(n.length);
-					ret = extractNumbers(a, c) + solve3(ex, c);
-				}else{
-					ret += solve3(a, c);
+				if (n.length === 1){
+					ret += names[0][n[0]] + " " +  names[3][c>0 ? c+1 : c];
 				}
+
+				if (n.length === 2){
+					ret += solve2(n[0],n[1], c);
+				}
+
+
+				if (n.length === 3){
+					ret += solve3([n[0],n[1],n[2]], c);
+				}
+
+				
+				if (n.length > 3){
+
+					ex = n.splice(n.length-3, 3)
+		
+					ret = extractNumbers(n, c) + solve3(ex, c);
+				}
+
+				
 
 				return ret;
 			}
@@ -60,13 +86,12 @@
 					var nums = num.split("");
 					
 
-					if (nums.length>1){
-						console.log(parseInt(num[0]));
-						console.log(extractNumbers(nums, 0));
-					} else {
-						$("#resultNumber").text(names[0][num[0]]);
-					}
-
+					//if (nums.length>1){
+						//console.log(parseInt(nums.length));
+						//fconsole.log(extractNumbers(nums, 0));
+					//} else {
+						$("#resultNumber").text(extractNumbers(nums, -1));
+					//}
 					
 				}
 				

@@ -1,0 +1,49 @@
+body{
+	background-color: #EFEFEF;
+}
+
+p{
+	font-family: 'Raleway';	
+}
+
+#inputContainer{
+	background-color: #FFF;
+	border-radius: 3px;
+	box-shadow: 0 5px 5px #CCC;
+	color: #B70046;
+	display: none;
+	font-family: 'Raleway';
+	font-size: 2em;
+	font-weight: bold;
+	left: 50%;
+	margin-left: -200px;
+	opacity: .9;
+	padding: 10px;
+	position: fixed;
+	right: 50%;
+	text-align: center;
+	top: 50px;
+	width: 400px;
+
+}
+
+#inputContainer input{
+	border-radius: 4px;
+	font-family: 'Raleway';
+	font-size: 1.5em;
+	font-weight: bold;
+	margin: 5px;
+	text-align: center;
+	width: 90%;
+
+}
+
+#resultNumber{
+	font-size: 8em;
+	text-align: center;
+}
+
+#status{
+	color: #3E6E85;
+	font-size: 0.5em;
+}

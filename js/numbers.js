@@ -77,6 +77,11 @@ $(function(){
 
 	function getLetters(num){
 		var nums = num.split("");
+		if(nums.length > 1 && nums[0]==="0"){
+			nums = nums[0] === "0" ? nums.splice(1,nums.length-1) : nums;
+			console.log(nums);
+		}
+		
 		if(nums.length>0)
 			return extractNumbers(nums, -1);
 
@@ -138,8 +143,9 @@ $(function(){
 
 	$input.keyup(function(event){
 		$(this).val($(this).val().replace(/[^0-9]/g, ''));
+
 		num = jQuery.trim(event.srcElement.value);
-			socket.emit('publish', num);	
+		socket.emit('publish', (Number(num) === 0 && num !== "") ? 0 : num);	
 	});
 
 

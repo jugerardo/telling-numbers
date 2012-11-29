@@ -27,7 +27,7 @@ var server = http.createServer(function(req,res){
 
 	fs.readFile(filePath, function(err, data){
 		res.writeHead(200,{
-			'Contetn-type' : contentType
+			'Content-type' : contentType
 		});
 		res.end(data, 'utf8');
 	});
